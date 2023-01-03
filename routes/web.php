@@ -13,8 +13,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/index', [ClientesController::class, 'index'])->name('clientes.index');
+Route::post('/clientes/store', [ClientesController::class, 'store'])->name('clientes.store');
+Route::post('/clientes/create', [ClientesController::class, 'create'])->name('clientes.create');
+Route::get('/visualizar', [ClientesController::class, 'visualizar'])->name('clientes.visualizar');
+Route::get('/clientes', [ClientesController::class, 'index'])->name('clientes.index');
 
 Route::get('/', function () {
     return view('welcome');

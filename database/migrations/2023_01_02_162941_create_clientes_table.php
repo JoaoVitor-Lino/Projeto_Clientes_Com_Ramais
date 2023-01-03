@@ -19,8 +19,8 @@ class CreateClientesTable extends Migration
             $table->string('telefone', 17);
             $table->string('email', 30);
             $table->string('endereco', 30);
-            $table->string('tipo', 10)->unique();
-            $table->string('documento', 20);
+            $table->string('tipo', 10);
+            $table->string('documento', 20)->unique();
             $table->timestamps();
         });
     }
