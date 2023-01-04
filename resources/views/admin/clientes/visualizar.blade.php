@@ -1,11 +1,16 @@
 @include('admin.clientes.partials.header')
 @section('title', 'Tabela Clientes')
 
+@if (session('messages')) 
+    <div class="btn btn-success" >
+        {{ session('messages') }}
+    </div>
+@endif
 
 <section class="card">
     <div class="card">
         <div class="card-header">
-            <form action="{{route('clientes.create')}}" method="post">
+            <form action="{{route('clientes.create')}}" method="get">
                 @csrf
                 <td><button class="btn btn-success btn-sm" type="submit">Criar Cliente</button></td>
             </form>
@@ -48,16 +53,18 @@
                                         <td> {{$dados->tipo}}</td>
                                         <td> {{$dados->documento}}</td>
                                         
-                                        <form action="#" method="POST"> {{-- Validar os Botoes de envios eles estao com # --}}
+                                        <form action="{{ route('clientes.destroy', $dados->id )}}" method="POST"> {{-- Validar os Botoes de envios eles estao com # --}}
+                                            @csrf
                                             <td>
-                                                <input type="hidden" name="id" value=" {{ $dados['id']}}>">
+                                                <input type="hidden" name="_method" value="DELETE">
                                                 <button class="btn btn-danger btn-sm " type="submit">Excluir</button>
                                             </td>
                                         </form>
                                         
-                                        <form action="#" method="POST">
+                                        <form action="{{ route('clientes.edit', $dados->id )}}" method="GET">
+                                            @csrf
                                             <td>
-                                                <input type="hidden" name="id" value=" {{ $dados['id']}}>">
+                                                <input type="hidden" name="_method" value=" {{ $dados->id}}>">
                                                 <button class="btn btn-success btn-sm" type="submit">Editar</button>
                                             </td>
                                         </form>

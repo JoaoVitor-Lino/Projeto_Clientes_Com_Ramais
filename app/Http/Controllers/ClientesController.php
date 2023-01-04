@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreClientes;
 use App\Models\clientes;
 use Illuminate\Http\Request;
 
@@ -21,14 +22,47 @@ class ClientesController extends Controller
     }
 
     public function create() {
+        
         return view('admin.clientes.create');
     }
 
-    public function store(Request $request) {
+    public function store(StoreClientes $request) {
         clientes::create($request->all());
+         
+        return redirect()->route('clientes.visualizar')
+                         ->with('messages', 'Cliente criado com sucesso');    
+    }
 
-        return redirect()->route('clientes.visualizar');
+    public function destroy($id) {
         
+        $cliente = clientes::find($id);
+        if (!$cliente) {
+            return redirect()->route('clientes.visualizar')
+                            ->with('messages', 'Cliente não encontrado');
+        }
+        $cliente->delete();
+        return redirect()->route('clientes.visualizar')
+                         ->with('messages', 'Cliente deletado com sucesso');
+    }
 
+    public function edit($id) {
+        $clientes = clientes::find($id);
+        if (!$clientes) {
+            return redirect()->back()
+                             ->with('messages', 'Não foi editar esse cliente');
+        }
+        
+        return view('admin.clientes.edit', compact('clientes'));
+    }
+
+    public function update($id) {
+        dd("aqui");
+        $clientes = clientes::find($id);
+        if (!$clientes) {
+            return redirect()->back()
+                             ->with('messages', 'Não foi editar esse cliente');
+        }
+        
+        return view('admin.clientes.edit', compact('clientes'));
     }
 }
