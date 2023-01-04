@@ -1,4 +1,4 @@
-@include('admin.clientes.partials.header')
+@include('admin.layouts.header')
 @section('title', 'Tabela Clientes')
 
 @if (session('messages')) 
@@ -61,8 +61,8 @@
                                             </td>
                                         </form>
                                         
-                                        <form action="{{ route('clientes.edit', $dados->id )}}" method="GET">
-                                            @csrf
+                                        <form action="{{ route('clientes.edit', $dados->id )}}" method="GET" >
+                                           
                                             <td>
                                                 <input type="hidden" name="_method" value=" {{ $dados->id}}>">
                                                 <button class="btn btn-success btn-sm" type="submit">Editar</button>

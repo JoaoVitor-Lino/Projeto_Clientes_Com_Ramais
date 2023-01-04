@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreClientes extends FormRequest
+class UpdateClientes extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -29,7 +29,7 @@ class StoreClientes extends FormRequest
             'email' => 'required|min:10|max:30',
             'endereco' => 'required|min:10|max:30',
             'tipo' => 'required',
-            'documento' => 'required|unique:clientes|min:11|max:20',
+            'documento' => 'required|min:11|max:20',
         ];
     }
 
@@ -42,7 +42,6 @@ class StoreClientes extends FormRequest
             'endereco.required' => 'O campo endereco é obrigatorio',
             'tipo.required' => 'Selecione entre os tipos Físico ou Jurídico',
             'documento.required' => 'O campo documento é obrigatorio',
-            'documento.unique' => 'Documento ja existente, verique se o digito est correto',
         ]; 
     }
 }

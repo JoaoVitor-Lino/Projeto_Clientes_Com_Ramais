@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreClientes;
+use App\Http\Requests\UpdateClientes;
 use App\Models\clientes;
 use Illuminate\Http\Request;
 
@@ -16,6 +17,7 @@ class ClientesController extends Controller
     }
 
     public function visualizar() {      
+    
         $clientes = clientes::get();
         
         return view('admin.clientes.visualizar', compact('clientes'));
@@ -28,7 +30,7 @@ class ClientesController extends Controller
 
     public function store(StoreClientes $request) {
         clientes::create($request->all());
-         
+        
         return redirect()->route('clientes.visualizar')
                          ->with('messages', 'Cliente criado com sucesso');    
     }
@@ -55,14 +57,15 @@ class ClientesController extends Controller
         return view('admin.clientes.edit', compact('clientes'));
     }
 
-    public function update($id) {
-        dd("aqui");
+    public function update(UpdateClientes $request, $id) {
         $clientes = clientes::find($id);
         if (!$clientes) {
             return redirect()->back()
-                             ->with('messages', 'Não foi editar esse cliente');
+                             ->with('messages', 'Não foi possível editar esse cliente');
         }
         
-        return view('admin.clientes.edit', compact('clientes'));
+        $clientes->update($request->all());
+        return redirect()->route('clientes.visualizar')
+                         ->with('messages', 'Cliente Atual com sucesso');
     }
 }
