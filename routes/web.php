@@ -22,6 +22,8 @@ Route::get('/clientes/create', [ClientesController::class, 'create'])->name('cli
 Route::get('/visualizar', [ClientesController::class, 'visualizar'])->name('clientes.visualizar');
 Route::get('/clientes', [ClientesController::class, 'index'])->name('clientes.index');
 
+
+Route::post('/dids/store', [DidsController::class, 'store'])->name('dids.store');
 Route::get('/dids/create', [DidsController::class, 'create'])->name('dids.create');
 Route::get('/dids', [DidsController::class, 'tabela'])->name('dids.tabela');
 

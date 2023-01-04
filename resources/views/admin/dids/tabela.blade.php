@@ -1,5 +1,7 @@
 @include('admin.layouts.header')
-
+@if (session('messages'))
+    {{session('messages')}}
+@endif
 <section class="card">
     <div class="card">
         
