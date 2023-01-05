@@ -1,9 +1,9 @@
 @include('admin.layouts.header')
 
 @if (session('messages'))
-    <div class="btn btn-success">
-        {{session('messages')}}
-    </div>
+<div class="alert alert-success" >
+    {{ session('messages') }}
+</div>
 @endif
 <section class="card">
     <section class="content" class="background">
@@ -56,7 +56,7 @@
                         
                             <select class="form-select form-floating @error('tipo') is-invalid @enderror" id="floatingSelect"
                                 aria-label="Floating label select example" name="tipo"> 
-                                <option value="1">Selecione</option>
+                                {{-- <option value="1">Selecione</option> --}}
                                 <option value="Fisico" <?php if ($clientes->tipo == "Fisico") { echo  "selected";}?>  >Fisico</option> 
                                 <option value="Juridico" <?php if ($clientes->tipo == "Juridico") { echo  "selected";}?>>Juridico</option>
 

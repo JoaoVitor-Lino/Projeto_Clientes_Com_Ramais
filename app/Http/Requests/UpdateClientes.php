@@ -22,14 +22,20 @@ class UpdateClientes extends FormRequest
      * @return array
      */
     public function rules()
-    {
+    {   
+        $id = $this->segment(2);
         return [
             'nome' => 'required|string|min:5|max:30',
             'telefone' => 'required|min:7|max:17',
             'email' => 'required|min:10|max:30',
             'endereco' => 'required|min:10|max:30',
-            'tipo' => 'required',
-            'documento' => 'required|min:11|max:20',
+            'tipo' => 'required|max:8',
+            'documento' => [
+                'required',
+                "unique:clientes,documento,{$id},id",
+                'min:11',
+                'max:20',
+            ],
         ];
     }
 
@@ -39,9 +45,11 @@ class UpdateClientes extends FormRequest
             'nome.required' => 'O campo nome é obrigatorio',
             'telefone.required' => 'O campo telefone é obrigatorio',
             'email.required' => 'O campo email é obrigatorio',
-            'endereco.required' => 'O campo endereco é obrigatorio',
-            'tipo.required' => 'Selecione entre os tipos Físico ou Jurídico',
+            'endereco.required' => 'O campo endereço é obrigatorio',
+            'tipo.required' => 'O campo tipo é obrigatorio',
+            'tipo.max' => 'Selecione entre as opções Físico ou Jurídico',
             'documento.required' => 'O campo documento é obrigatorio',
+            'documento.unique' => 'Documento ja existente, verique se o digito est correto',
         ]; 
     }
 }

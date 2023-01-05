@@ -2,7 +2,7 @@
 @section('title', 'Tabela Clientes')
 
 @if (session('messages')) 
-    <div class="btn btn-success" >
+    <div class="alert alert-success" >
         {{ session('messages') }}
     </div>
 @endif
@@ -11,7 +11,7 @@
     <div class="card">
         <div class="card-header">
             <form action="{{route('clientes.create')}}" method="get">
-                @csrf
+               
                 <td><button class="btn btn-success btn-sm" type="submit">Criar Cliente</button></td>
             </form>
         </div>

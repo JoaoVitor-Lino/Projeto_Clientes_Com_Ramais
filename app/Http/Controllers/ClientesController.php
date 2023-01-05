@@ -51,7 +51,7 @@ class ClientesController extends Controller
         $clientes = clientes::find($id);
         if (!$clientes) {
             return redirect()->back()
-                             ->with('messages', 'Não foi editar esse cliente');
+                             ->with('messages', 'Não possível foi editar esse cliente');
         }
         
         return view('admin.clientes.edit', compact('clientes'));
@@ -66,6 +66,6 @@ class ClientesController extends Controller
         
         $clientes->update($request->all());
         return redirect()->route('clientes.visualizar')
-                         ->with('messages', 'Cliente Atual com sucesso');
+                         ->with('messages', 'Cliente editado com sucesso');
     }
 }

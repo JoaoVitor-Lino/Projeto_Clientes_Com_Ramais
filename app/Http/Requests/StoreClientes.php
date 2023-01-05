@@ -7,32 +7,39 @@ use Illuminate\Foundation\Http\FormRequest;
 class StoreClientes extends FormRequest
 {
     /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
+    * Determine if the user is authorized to make this request.
+    *
+    * @return bool
+    */
     public function authorize()
     {
         return true;
     }
-
+    
     /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
+    * Get the validation rules that apply to the request.
+    *
+    * @return array
+    */
     public function rules()
     {
+        $id = $this->segment(2);
         return [
+            
             'nome' => 'required|string|min:5|max:30',
             'telefone' => 'required|min:7|max:17',
             'email' => 'required|min:10|max:30',
             'endereco' => 'required|min:10|max:30',
-            'tipo' => 'required',
-            'documento' => 'required|unique:clientes|min:11|max:20',
+            'tipo' => 'required|max:8',
+            'documento' => [
+                'required',
+                "unique:clientes,documento,{$id},id",
+                'min:11',
+                'max:20',
+            ],
         ];
     }
-
+    
     public function messages() 
     {
         return [
@@ -41,6 +48,7 @@ class StoreClientes extends FormRequest
             'email.required' => 'O campo email é obrigatorio',
             'endereco.required' => 'O campo endereco é obrigatorio',
             'tipo.required' => 'Selecione entre os tipos Físico ou Jurídico',
+            'tipo.max' => 'Selecione entre as opções Físico ou Jurídico',
             'documento.required' => 'O campo documento é obrigatorio',
             'documento.unique' => 'Documento ja existente, verique se o digito est correto',
         ]; 
