@@ -25,18 +25,19 @@ class StoreRamais extends FormRequest
     {
         return [
             'ramal' => 'required|min:4|max:5',
-            'nome' =>   'required|min:4|max:15',
+            'nomes' =>   'required|min:4|max:15',
             'tipo' => 'required|min:3|max:3',
             'bina' => 'required|min:10|max:15',
-            
+            'cliente_id' => 'required',
         ];
     }
     public function messages() {
         return [
             'ramal.required' => 'O campo ramal é obrigatório',
-            'nome.required' => 'O campo nome é obrigatório',
+            'nomes.required' => 'O campo nome é obrigatório',
             'tipo.max' => 'Selecione entre as opções SIP ou Web',
             'bina.required' => 'O campo bina é obrigatório',
+            'cliente_id.required' => 'O campo clientes é obrigatorio',
         ];
     }
 }

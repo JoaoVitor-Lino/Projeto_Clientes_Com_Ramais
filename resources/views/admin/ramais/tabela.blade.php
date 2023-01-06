@@ -4,9 +4,9 @@
     {{ session('messages') }}
 </div>
 @endif
+
 <section class="card">
-    <div class="card">
-        
+    <div class="card">       
         <div class="card-header">
             <form action="{{route('ramais.create')}}" method="get">
                 <td><button class="btn btn-success btn-sm" type="submit">Criar Ramais</button></td>
@@ -29,26 +29,23 @@
                                     <th scope="col">Bina</th>
                                     <th scope="col">Cliente</th>
                                 </tr>
-                            </thead>
-                            
+                            </thead>                            
                             <tbody>
                                 <tr>
                                     @foreach ($cliente as $key => $dados)
                                     <th scope="row">{{$dados->id}}</th>
                                     <td>{{$dados->ramal}}</td>
-                                    <td>{{$dados->nome}}</td>
+                                    <td>{{$dados->nomes}}</td>
                                     <td>{{$dados->tipo}}</td>
                                     <td>{{$dados->bina}}</td>
-                                    <td>{{$dados->nome}}</td>
-                                    
+                                    <td>{{$dados->nome}}</td>                                    
                                     <form action="{{route('ramais.destroy', $dados->id)}}" method="POST">
                                         @csrf
                                         <td>
                                             <input type="hidden" name="_method" value="DELETE">
                                             <button class="btn btn-danger btn-sm" type="submit">Excluir</button>
                                         </td>
-                                    </form>
-                                    
+                                    </form>                                
                                     <form action="{{route('ramais.edit', $dados->id)}}" method="get">
                                         <td>
                                             <input type="hidden" name="id" value="{{$dados->id}}">

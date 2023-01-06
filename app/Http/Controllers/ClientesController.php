@@ -10,33 +10,26 @@ use Illuminate\Http\Request;
 class ClientesController extends Controller
 {
     public function index() {      
-        $clientes = clientes::get();
-
-        
+        $clientes = clientes::get();        
         return view('admin.clientes.index', compact('clientes'));
     }
 
     public function visualizar() {      
-    
         $clientes = clientes::get();
-        
         return view('admin.clientes.visualizar', compact('clientes'));
     }
 
-    public function create() {
-        
+    public function create() {    
         return view('admin.clientes.create');
     }
 
     public function store(StoreClientes $request) {
-        clientes::create($request->all());
-        
+        clientes::create($request->all());    
         return redirect()->route('clientes.visualizar')
                          ->with('messages', 'Cliente criado com sucesso');    
     }
 
-    public function destroy($id) {
-        
+    public function destroy($id) {    
         $cliente = clientes::find($id);
         if (!$cliente) {
             return redirect()->route('clientes.visualizar')
@@ -52,8 +45,7 @@ class ClientesController extends Controller
         if (!$clientes) {
             return redirect()->back()
                              ->with('messages', 'Não possível foi editar esse cliente');
-        }
-        
+        }    
         return view('admin.clientes.edit', compact('clientes'));
     }
 
@@ -62,8 +54,7 @@ class ClientesController extends Controller
         if (!$clientes) {
             return redirect()->back()
                              ->with('messages', 'Não foi possível editar esse cliente');
-        }
-        
+        }    
         $clientes->update($request->all());
         return redirect()->route('clientes.visualizar')
                          ->with('messages', 'Cliente editado com sucesso');

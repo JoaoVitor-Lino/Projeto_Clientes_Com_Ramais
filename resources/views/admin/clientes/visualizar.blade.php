@@ -1,30 +1,25 @@
 @include('admin.layouts.header')
 @section('title', 'Tabela Clientes')
-
 @if (session('messages')) 
-    <div class="alert alert-success" >
-        {{ session('messages') }}
-    </div>
+<div class="alert alert-success" >
+    {{ session('messages') }}
+</div>
 @endif
 
 <section class="card">
     <div class="card">
         <div class="card-header">
             <form action="{{route('clientes.create')}}" method="get">
-               
                 <td><button class="btn btn-success btn-sm" type="submit">Criar Cliente</button></td>
             </form>
-        </div>
-        
+        </div> 
         <section class="content" class="background">
             <div class="content-title nav flex-column nav justify-content-left">
-                <div class="container-fluid">
-                    
+                <div class="container-fluid">        
                     <ul class="nav flex-column nav justify-content-left ConteudoCard"
                     style="margin-left: 1px;margin-right: 1px;">
                     <li class="nav-item">
-                        <h3>CLIENTES</h3>
-                        
+                        <h3>CLIENTES</h3>                       
                         <table class="table">
                             <thead>
                                 <tr>
@@ -34,46 +29,37 @@
                                     <th scope="col">E-mail</th>
                                     <th scope="col">Endereço</th>
                                     <th scope="col">Tipo</th>
-                                    <th scope="col">Documento</th>
-                                    
-                                </tr>
-                                
-                            </thead>
-                            
+                                    <th scope="col">Documento</th>                                    
+                                </tr>                                
+                            </thead>                            
                             <tbody>
-                                <tr>
-
-                                    @foreach ($clientes as $key=> $dados)
-                                    
-                                        <th scope="row"> {{$dados->id}}</th>
-                                        <td> {{$dados->nome}}</td>
-                                        <td> {{$dados->telefone}}</td>
-                                        <td> {{$dados->email}}</td>
-                                        <td> {{$dados->endereco}}</td>
-                                        <td> {{$dados->tipo}}</td>
-                                        <td> {{$dados->documento}}</td>
-                                        
-                                        <form action="{{ route('clientes.destroy', $dados->id )}}" method="POST"> {{-- Validar os Botoes de envios eles estao com # --}}
-                                            @csrf
-                                            <td>
-                                                <input type="hidden" name="_method" value="DELETE">
-                                                <button class="btn btn-danger btn-sm " type="submit">Excluir</button>
-                                            </td>
-                                        </form>
-                                        
-                                        <form action="{{ route('clientes.edit', $dados->id )}}" method="GET" >
-                                           
-                                            <td>
-                                                <input type="hidden" name="_method" value=" {{ $dados->id}}>">
-                                                <button class="btn btn-success btn-sm" type="submit">Editar</button>
-                                            </td>
-                                        </form>
+                                <tr>                                    
+                                    @foreach ($clientes as $key=> $dados)    
+                                    <th scope="row"> {{$dados->id}}</th>
+                                    <td> {{$dados->nome}}</td>
+                                    <td> {{$dados->telefone}}</td>
+                                    <td> {{$dados->email}}</td>
+                                    <td> {{$dados->endereco}}</td>
+                                    <td> {{$dados->tipo}}</td>
+                                    <td> {{$dados->documento}}</td>    
+                                    <form action="{{ route('clientes.destroy', $dados->id )}}" method="POST"> {{-- Validar os Botoes de envios eles estao com # --}}
+                                        @csrf
+                                        <td>
+                                            <input type="hidden" name="_method" value="DELETE">
+                                            <button class="btn btn-danger btn-sm " type="submit">Excluir</button>
+                                        </td>
+                                    </form>                                    
+                                    <form action="{{ route('clientes.edit', $dados->id )}}" method="GET" >                                       
+                                        <td>
+                                            <input type="hidden" name="_method" value=" {{ $dados->id}}>">
+                                            <button class="btn btn-success btn-sm" type="submit">Editar</button>
+                                        </td>
+                                    </form>
                                 </tr>
                                 @endforeach
-                            </div>
-                            
-        </section>
-    </body>
-</html>
-
-                        
+                            </div>                            
+                        </section>
+                    </body>
+                    </html>
+                    
+                    

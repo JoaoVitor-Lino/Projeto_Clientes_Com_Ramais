@@ -16,19 +16,16 @@ class DidsController extends Controller
         ->join('clientes', 'dids.cliente_id', '=', 'clientes.id')
         ->select('dids.*', 'clientes.nome')
         ->get();
- 
         return view('admin.dids.tabela', compact( 'cliente'));
     }
 
     public function create() {
         $dados = clientes::get();
-
         return view('admin.dids.create', compact('dados'));
     }
 
     public function store(StoreDids $request) { 
-        dids::create($request->all());
-        
+        dids::create($request->all());    
         return redirect()->route('dids.tabela')
                          ->with('messages', 'Did criado com sucesso');
         
@@ -60,8 +57,7 @@ class DidsController extends Controller
         if (!$did) {
             return redirect()->back()
                              ->with('messages', 'Não foi possível editar o did');
-        }
-        
+        }    
         $did->update($request->all());
         return redirect()->route('dids.tabela')
                          ->with('messages', 'Did editado com sucesso');

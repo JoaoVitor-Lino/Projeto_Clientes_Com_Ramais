@@ -13,16 +13,14 @@ class RamaisController extends Controller
 {
     public function tabela(){
         $cliente = DB::table('ramais')
-        ->join('clientes', 'ramais.cliente_id', '=', 'clientes.id')
+        ->join('clientes', 'clientes.id', '=', 'ramais.cliente_id')
         ->select('ramais.*', 'clientes.nome')
         ->get();
-
         return view('admin.ramais.tabela', compact('cliente'));
     }
 
     public function create() {
-        $dados = clientes::get();
-        
+        $dados = clientes::get();    
         return view('admin.ramais.create' , compact('dados'));
     }
 

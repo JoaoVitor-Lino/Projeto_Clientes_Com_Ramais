@@ -1,19 +1,11 @@
 @include('admin.layouts.header')
+@section('title', 'Criar Clientes')
+@if (session('messages'))
+<div class="alert alert-success" >
+    {{ session('messages') }}
+</div>
+@endif
 <section class="card">
-    {{-- @if ($errors->any())
-        <div class="btn btn-danger btn-sm ">
-            @foreach ($errors->all() as $error)
-                <p>{{$error}}</p>
-            @endforeach
-        </div>    
-    @endif --}}
-
-    @if (session('messages'))
-        <div class="btn btn-success">
-            {{session('messages')}}
-        </div>
-    @endif
-
     <section class="content" class="background">
         <div class="content-title nav flex-column nav justify-content-left">
             <div class="container-fluid">
