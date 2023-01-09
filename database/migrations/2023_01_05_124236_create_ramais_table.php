@@ -7,10 +7,10 @@ use Illuminate\Support\Facades\Schema;
 class CreateRamaisTable extends Migration
 {
     /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+    * Run the migrations.
+    *
+    * @return void
+    */
     public function up()
     {
         Schema::create('ramais', function (Blueprint $table) {
@@ -23,14 +23,18 @@ class CreateRamaisTable extends Migration
             $table->timestamps();
         });
     }
-
+    
     /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
+    * Reverse the migrations.
+    *
+    * @return void
+    */
     public function down()
     {
-        Schema::dropIfExists('ramais');
+        Schema::table('ramais', function (Blueprint $table) {
+            $table->foreignId('cliente_id')
+            ->constrained()
+            ->onDelete('cascade');
+        });
     }
 }

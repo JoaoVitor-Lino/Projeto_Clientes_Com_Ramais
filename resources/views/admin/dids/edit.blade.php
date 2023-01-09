@@ -35,7 +35,7 @@
                         <select class="form-select form-floating @error('cliente_id') is-invalid @enderror" id="floatingSelect" aria-label="Floating label select example" name="cliente_id" value="{{old('cliente_id')}}">
                             <option></option>
                             @foreach ($dados as $cliente)
-                                <option value="{{$cliente->id}}">{{ $cliente->nome }}</option>
+                                <option value="{{$cliente->id}}"  @if ($cliente->id === $did->cliente_id) {{"selected= $cliente->id"}} @endif>{{ $cliente->nome }}</option>
                             @endforeach    
                         </select>
                         <label for="floatingSelect">Clientes</label>

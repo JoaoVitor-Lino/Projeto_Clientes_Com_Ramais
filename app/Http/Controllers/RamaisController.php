@@ -42,6 +42,7 @@ class RamaisController extends Controller
     }
 
     public function edit($id) {
+
         $dados = clientes::get();
         $ramal = ramais::find($id);
         if(!$ramal) {
@@ -52,6 +53,7 @@ class RamaisController extends Controller
     }
 
     public function update(UpdateRamais $request, $id) {
+        
         $ramal = ramais::find($id);
         if(!$ramal) {
             return redirect()->route('ramais.tabela')

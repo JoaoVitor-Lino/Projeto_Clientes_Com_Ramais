@@ -29,6 +29,10 @@ class CreateDidsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dids');
+        Schema::table('ramais', function (Blueprint $table) {
+            $table->foreignId('cliente_id')
+            ->constrained()
+            ->onDelete('cascade');
+        });
     }
 }

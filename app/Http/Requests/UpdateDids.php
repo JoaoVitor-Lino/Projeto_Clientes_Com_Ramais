@@ -29,18 +29,30 @@ class UpdateDids extends FormRequest
                 'required',
                 "unique:dids,numero,{$id},id",
                 'min:9',
-                'max:17',         
-        ],
-            'descricao' => 'required|min:5|max:25',
-            'cliente_id' => 'required',
+                'max:17', 
+            ],
+            'descricao' => [
+                'required',
+                'min:5',
+                'max:25',
+            ],
+            'cliente_id' => [
+                'required',
+            ],
         ];
     }
     public function messages() {
         return [
             'numero.required' => 'O campo número é obrigatório',
+            'numero.unique' => 'O número já existe, verifique se o digito está correto',
+            'numero.min' => 'O mínimo de números é de 9 digitos',
+            'numero.max' => 'O maximo de números é 17 digitos',
+            
             'descricao.required' => 'O campo descrição é obrigatório',
-            'numero.unique' => 'Numero ja cadastrado',
-            'cliente_id.required' => 'O campo clientes é obrigatorio',  
+            'descricao.min' => 'O mínimo de letras é de 9 digitos',
+            'descricao.max' => 'O maximo de letras é 25 digitos',
+            
+            'cliente_id.required' => 'O campo clientes é obrigatorio', 
         ];
     }
 }

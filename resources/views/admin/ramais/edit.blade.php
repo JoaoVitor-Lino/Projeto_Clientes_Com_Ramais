@@ -35,8 +35,8 @@
                             <select class="form-select form-floating @error('tipo') is-invalid @enderror" id="floatingSelect"
                             aria-label="Floating label select example" name="tipo" >
                             <option selected>Selecione</option>
-                            <option value="{{$ramal->tipo}}">SIP</option>
-                            <option value="{{$ramal->tipo}}">WEB</option>                            
+                            <option value="sip"<?php if ($ramal->tipo == "sip") { echo  "selected";}?>>SIP</option>
+                            <option value="web" {{$ramal->tipo == "web" ? "selected='selected'" : ""}}>WEB</option>                            
                         </select>
                         <label for="floatingSelect">Tipo</label>
                         @error('tipo')
@@ -56,7 +56,7 @@
                         <select class="form-select form-floating  @error('cliente_id') is-invalid @enderror" id="floatingSelect" aria-label="Floating label select example" name="cliente_id">                            
                             <option></option>                            
                             @foreach ($dados as $cliente)
-                            <option value="{{$cliente->id}}">{{ old($cliente->nome) ?? $cliente->nome}}</option>
+                            <option value="{{$cliente->id}}" @if ($cliente->id === $ramal->cliente_id) {{"selected= $cliente->id"}} @endif>{{$cliente->nome}}</option>
                             @endforeach
                         </select>
                         <label for="floatingSelect">Clientes</label>

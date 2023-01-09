@@ -54,7 +54,7 @@
 
                             <select class="form-select form-floating @error('tipo') is-invalid @enderror" id="floatingSelect"
                                 aria-label="Floating label select example" name="tipo" >
-                                <option value="0">Selecione</option>
+                                <option value="Selecione">Selecione</option>
                                 <option value="Fisico">Fisico</option>
                                 <option value="Juridico">Juridico</option>
 
