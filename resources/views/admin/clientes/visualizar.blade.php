@@ -3,7 +3,7 @@
 @if (session('messages')) 
 <div class="alert alert-success" >
     {{ session('messages') }}
-@endif
+    @endif
 </div>
 @if (session('messages-danger')) 
 <div class="alert alert-danger" >
@@ -62,9 +62,13 @@
                                     </form>
                                 </tr>
                                 @endforeach
-                            </div>                            
-                        </section>
-                    </body>
-                    </html>
-                    
-                    
+                            </tbody>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section> 
+    </div>                                       
+</section>
+
+

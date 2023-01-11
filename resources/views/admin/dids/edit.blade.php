@@ -18,30 +18,29 @@
                             <input type="text" class="form-control @error('numero') is-invalid @enderror"  name="numero" value="{{$did->numero}}">
                             <label for="floatingInputValue">Número</label>
                             @error('numero')
-                            <div class="alert alert-danger">{{ $message }}</div>
+                                <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <br>
                         <div class="form-floating">
-
                             <input type="text" class="form-control @error('descricao') is-invalid @enderror"  name="descricao" value="{{$did->descricao}}">
                             <label for="floatingInputValue">Descrição</label>
                             @error('descricao')
-                            <div class="alert alert-danger">{{ $message }}</div>
+                                <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <br>
                         <div class="form-floating">
-                        <select class="form-select form-floating @error('cliente_id') is-invalid @enderror" id="floatingSelect" aria-label="Floating label select example" name="cliente_id" value="{{old('cliente_id')}}">
-                            <option></option>
-                            @foreach ($dados as $cliente)
-                                <option value="{{$cliente->id}}"  @if ($cliente->id === $did->cliente_id) {{"selected= $cliente->id"}} @endif>{{ $cliente->nome }}</option>
-                            @endforeach    
-                        </select>
-                        <label for="floatingSelect">Clientes</label>
-                        @error('cliente_id')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
+                            <select class="form-select form-floating @error('cliente_id') is-invalid @enderror" id="floatingSelect" aria-label="Floating label select example" name="cliente_id" value="{{old('cliente_id')}}">
+                                    <option></option>
+                                @foreach ($dados as $cliente)
+                                    <option value="{{$cliente->id}}"  @if ($cliente->id === $did->cliente_id) {{"selected= $cliente->id"}} @endif>{{ $cliente->nome }}</option>
+                                @endforeach    
+                            </select>
+                            <label for="floatingSelect">Clientes</label>
+                            @error('cliente_id')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                             @enderror
                         </div>
                         <br>  
                         <button type="submit" class="btn btn-primary">Atualizar </button>
@@ -49,4 +48,6 @@
                     </div>
                 </form>
             </div>
+        </div>    
     </section>
+</section>
