@@ -11,7 +11,9 @@ use Illuminate\Support\Facades\DB;
 
 class DidsController extends Controller
 {
-    public function tabela() {
+    public function tabela() 
+    {
+        // $cliente = dids::
         $cliente = DB::table('dids')
         ->join('clientes', 'dids.cliente_id', '=', 'clientes.id')
         ->select('dids.*', 'clientes.nome')
@@ -19,19 +21,25 @@ class DidsController extends Controller
         return view('admin.dids.tabela', compact( 'cliente'));
     }
 
-    public function create() {
+    public function create() 
+    {
         $dados = clientes::get();
         return view('admin.dids.create', compact('dados'));
     }
 
-    public function store(StoreDids $request) { 
+    public function store(StoreDids $request) 
+    { 
+        // $did = new dids;
+        // $response = $did->newInfo($request->all());
+
         dids::create($request->all());    
         return redirect()->route('dids.tabela')
                          ->with('messages', 'Did criado com sucesso');
         
     }
 
-    public function destroy($id) {
+    public function destroy($id) 
+    {
         $did = dids::find($id);
         if (!$did) {
             return redirect()->route('dids.tabela')
@@ -42,7 +50,8 @@ class DidsController extends Controller
                          ->with('messages', 'Did deletado com sucesso');
     }
 
-    public function edit($id) {
+    public function edit($id) 
+    {
         $dados = clientes::get();
         $did = dids::find($id);
         if(!$did) {
@@ -52,7 +61,8 @@ class DidsController extends Controller
         return view('admin.dids.edit', compact('did', 'dados'));
     }
 
-    public function update(UpdateDids $request ,$id) {
+    public function update(UpdateDids $request ,$id) 
+    {
         $did = dids::find($id);
         if (!$did) {
             return redirect()->back()

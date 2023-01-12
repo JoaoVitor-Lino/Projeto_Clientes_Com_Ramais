@@ -12,7 +12,14 @@ class dids extends Model
     protected $table = 'dids';
     protected $fillable = ['numero', 'descricao', 'cliente_id'];
     
-    public function clientes() {
+    public function clientes() 
+    {
         return $this->belongsTo(clientes::class);
     }
+
+    // public function newInfo($data)
+    // {
+    //     $info = $this->create($data);
+    //     return $info;
+    // }
 }
