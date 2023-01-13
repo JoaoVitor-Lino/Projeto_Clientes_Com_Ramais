@@ -24,7 +24,14 @@ class ClientesController extends Controller
     }
 
     public function store(StoreClientes $request) {
-        clientes::create($request->all());    
+        $cliente = new clientes;
+        $response = $cliente->newInfo($request->all());
+        
+        if(!$response) 
+        {
+            return redirect()->back()
+                             ->with('messages', 'Não foi possível criar um novo Cliente');
+        }
         return redirect()->route('clientes.visualizar')
                          ->with('messages', 'Cliente criado com sucesso');    
     }

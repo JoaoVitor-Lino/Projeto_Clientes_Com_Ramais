@@ -15,4 +15,10 @@ class ramais extends Model
     public function clientes() {
         return $this->belongsTo(clientesntes::class);
     }
+
+    public function newInfo($data)
+    {
+        $info = $this->create($data);
+        return $info;
+    }
 }

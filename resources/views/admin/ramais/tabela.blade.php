@@ -51,8 +51,8 @@
                                                 <button class="btn btn-primary btn-sm" type="submit">Editar</button>
                                             </td>
                                         </form> 
-                                        @endforeach
-                                    </tr> 
+                                    </tr>
+                                        @endforeach 
                                 </tbody>
                             </table>     
                         </li>        

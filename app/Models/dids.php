@@ -17,9 +17,9 @@ class dids extends Model
         return $this->belongsTo(clientes::class);
     }
 
-    // public function newInfo($data)
-    // {
-    //     $info = $this->create($data);
-    //     return $info;
-    // }
+    public function newInfo($data)
+    {
+        $info = $this->create($data);
+        return $info;
+    }
 }

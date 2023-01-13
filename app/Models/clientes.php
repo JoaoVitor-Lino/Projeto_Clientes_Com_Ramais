@@ -13,11 +13,19 @@ class clientes extends Model
 
     protected $fillable = ['nome', 'telefone', 'email', 'endereco', 'tipo', 'documento'];
 
-    public function dids() {
+    public function dids() 
+    {
         return $this->hasMany(dids::class, 'cliente_id');
     }
 
-    public function ramais() {
+    public function ramais() 
+    {
         return $this->hasMany(ramais::class, 'cliente_id');
+    }
+
+    public function newInfo($data)
+    {
+        $info = $this->create($data);
+        return $info;
     }
 }

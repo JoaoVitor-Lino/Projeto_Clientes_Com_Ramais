@@ -7,15 +7,13 @@ use App\Http\Requests\UpdateDids;
 use App\Models\clientes;
 use App\Models\dids;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+
 
 class DidsController extends Controller
 {
     public function tabela() 
     {
-        // $cliente = dids::
-        $cliente = DB::table('dids')
-        ->join('clientes', 'dids.cliente_id', '=', 'clientes.id')
+         $cliente = dids::join('clientes', 'dids.cliente_id', '=', 'clientes.id')
         ->select('dids.*', 'clientes.nome')
         ->get();
         return view('admin.dids.tabela', compact( 'cliente'));
@@ -29,10 +27,14 @@ class DidsController extends Controller
 
     public function store(StoreDids $request) 
     { 
-        // $did = new dids;
-        // $response = $did->newInfo($request->all());
-
-        dids::create($request->all());    
+        $did = new dids;
+        $response = $did->newInfo($request->all());
+        
+        if(!$response)
+        {
+            return redirect()->back()
+                             ->with('messages', 'Não foi possível criar um novo Did');
+        }
         return redirect()->route('dids.tabela')
                          ->with('messages', 'Did criado com sucesso');
         
