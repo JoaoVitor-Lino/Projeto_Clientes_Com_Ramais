@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ClientesController;
 use App\Http\Controllers\DidsController;
+use App\Http\Controllers\EmailController;
 use App\Http\Controllers\RamaisController;
 use Illuminate\Support\Facades\Route;
 
@@ -45,6 +46,8 @@ Route::prefix('ramais')->group(function(){
     Route::get('/create', [RamaisController::class, 'create'])->name('ramais.create');
     Route::get('/', [RamaisController::class, 'tabela'])->name('ramais.tabela');
 });
+
+Route::get('/email', [EmailController::class, 'mail'])->name('email.mail');
 
 Route::get('/', function () {
     return view('welcome');
