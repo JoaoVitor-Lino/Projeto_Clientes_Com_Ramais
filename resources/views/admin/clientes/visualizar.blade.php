@@ -63,7 +63,7 @@
                                 </tr>
                                 @endforeach
                             </tbody>
-                        </li>
+                        </li>   
                     </ul>
                 </div>
             </div>

@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\ClientesController;
 use App\Http\Controllers\DidsController;
 use App\Http\Controllers\EmailController;
 use App\Http\Controllers\RamaisController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,8 +19,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//                      Rotas de teste para Autenticação        
+//---------------------------------------------------------------------------------------------
+Route::get('/cadastro', [AuthController::class, 'formRegister'])->name('cadastro.register');
+Route::get('/login', [AuthController::class, 'formLogin'])->name('login');
+Route::post('/login', [AuthController::class, 'Login'])->name('post.login');
+Route::post('/cadastro/store',[UserController::class, 'store'])->name('cadastro.store');
+Route::get('/usuarios', [UserController::class, 'show'])->name('cadastro.show');
+
+
+//---------------------------------------------------------------------------------------------
 //ROTAS DO CLIENTE
-Route::prefix('clientes')->group(function () {
+Route::middleware('auth')->prefix('clientes')->group(function () {
     Route::put('/{id}', [ClientesController::class, 'update'])->name('clientes.update');
     Route::get('/edit/{id}', [ClientesController::class, 'edit'])->name('clientes.edit');
     Route::delete('/{id}', [ClientesController::class, 'destroy'])->name('clientes.destroy');
