@@ -46,6 +46,11 @@
                                 Ramais
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('cadastro.register')}}">
+                                Registrar Novo Usuário
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>

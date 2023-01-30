@@ -11,6 +11,9 @@
             <form action="{{route('ramais.create')}}" method="get">
                 <td><button class="btn btn-success btn-sm" type="submit">Criar Ramais</button></td>
             </form>
+            <form action="{{route('ramais.csv')}}" method="GET">
+                <button id="" class="btn btn-warning btn-sm " type="submit">CSV</button>
+            </form>
         </div>
         <section class="content" class="background">
             <div class="content-title nav flex-column nav justify-content-left">

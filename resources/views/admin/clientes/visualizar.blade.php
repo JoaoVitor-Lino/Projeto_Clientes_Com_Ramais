@@ -16,6 +16,9 @@
         <div class="card-header">
             <form action="{{route('clientes.create')}}" method="get">
                 <td><button class="btn btn-success btn-sm" type="submit">Criar Cliente</button></td>
+            </form> 
+            <form action="{{route('clientes.csv')}}" method="GET">
+                <button id="" class="btn btn-warning btn-sm " type="submit">CSV</button>
             </form>
         </div> 
         <section class="content" class="background">

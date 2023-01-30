@@ -66,4 +66,18 @@ class ClientesController extends Controller
         return redirect()->route('clientes.visualizar')
                          ->with('messages', 'Cliente editado com sucesso');
     }
+    public function clienteCsv(){
+        $clientes = Clientes::get();
+        
+        $file = fopen('php://output', 'w');
+        header('Content-type: application/csv');
+        header('Content-Disposition: attachement; filename=relatorio_cliente.csv');
+        //header
+        fputcsv($file, array('Id', 'Nome', 'Email', 'Endereco', 'Tipo', 'Documento'),";");
+        foreach ($clientes as $cliente) {
+            fputcsv($file, array($cliente->id, $cliente->nome, $cliente->email, $cliente->endereco, $cliente->tipo, $cliente->documento),";");
+        }
+        fclose($file);
+        exit;
+    }
 }

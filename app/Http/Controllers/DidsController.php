@@ -74,4 +74,23 @@ class DidsController extends Controller
         return redirect()->route('dids.tabela')
                          ->with('messages', 'Did editado com sucesso');
     }
+
+    public function didCsv(){
+        $clientes = dids::join('clientes', 'dids.cliente_id', '=', 'clientes.id')
+        ->select('dids.*', 'clientes.nome')
+        ->get();
+        
+        $file = fopen('php://output', 'w');
+        header('Content-type: application/csv');
+        header('Content-Type: text/html; charset=utf-8');
+        header('Content-Disposition: attachment; filename=relatiorio_dids.csv');
+        fputcsv($file, array('Id', 'Clientes', 'Número', 'Descrição'),";");
+
+        foreach($clientes as $cliente) {
+            fputcsv($file,array($cliente->id, $cliente->nome, $cliente->numero, $cliente->descricao),";");
+        }
+        fclose($file);
+        exit;
+
+    }
 }

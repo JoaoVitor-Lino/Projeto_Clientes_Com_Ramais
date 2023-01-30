@@ -75,5 +75,22 @@ class RamaisController extends Controller
         return redirect()->route('ramais.tabela')
                          ->with('messages', 'ramal editado com sucesso');
     }
+    public function ramaisCsv()
+    {
+        $clientes = ramais::join('clientes', 'clientes.id', '=', 'ramais.cliente_id')
+        ->select('ramais.*', 'clientes.nome')
+        ->get();
+       
+        $file = fopen('php://output', 'w');
+        header('Content-type: application/csv');
+        header('Content-Type: text/html; charset=utf-8');
+        header('Content-Disposition: attachment; filename=relatorio_ramais.csv');
+        fputcsv($file, array('Id', 'Ramal', 'Nome', 'Tipo', 'Bina', 'Clientes'), ';');
+        foreach($clientes as $cliente) {
+            fputcsv($file, array($cliente->id, $cliente->ramal, $cliente->nomes, $cliente->tipo, $cliente->bina, $cliente->nome ),';');
+        }
+        fclose($file);
+        exit;
+    }
 
 }

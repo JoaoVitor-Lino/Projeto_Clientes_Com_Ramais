@@ -26,6 +26,7 @@ Route::get('/login', [AuthController::class, 'formLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'Login'])->name('post.login');
 Route::post('/cadastro/store',[UserController::class, 'store'])->name('cadastro.store');
 Route::get('/usuarios', [UserController::class, 'show'])->name('cadastro.show');
+Route::get('/relatorio', [UserController::class, 'userCsv'])->name('user.csv');
 
 
 //---------------------------------------------------------------------------------------------
@@ -38,6 +39,7 @@ Route::middleware('auth')->prefix('clientes')->group(function () {
     Route::get('/create', [ClientesController::class, 'create'])->name('clientes.create');
     Route::get('/visualizar', [ClientesController::class, 'visualizar'])->name('clientes.visualizar');
     Route::get('/', [ClientesController::class, 'index'])->name('clientes.index');
+    Route::get('/relatorio', [ClientesController::class, 'clienteCsv'])->name('clientes.csv');
 });
 
 //ROTAS DO DID
@@ -48,6 +50,7 @@ Route::prefix('dids')->group(function(){
     Route::post('/store', [DidsController::class, 'store'])->name('dids.store');
     Route::get('/create', [DidsController::class, 'create'])->name('dids.create');
     Route::get('/', [DidsController::class, 'tabela'])->name('dids.tabela');
+    Route::get('/relatorio', [DidsController::class, 'didCsv'])->name('dids.csv');
 });
 //ROTAS DO RAMAL
 Route::prefix('ramais')->group(function(){
@@ -57,6 +60,7 @@ Route::prefix('ramais')->group(function(){
     Route::post('/store', [RamaisController::class, 'store'])->name('ramais.store');
     Route::get('/create', [RamaisController::class, 'create'])->name('ramais.create');
     Route::get('/', [RamaisController::class, 'tabela'])->name('ramais.tabela');
+    Route::get('/relatorio', [RamaisController::class, 'ramaisCsv'])->name('ramais.csv');
 });
 
 Route::get('/email', [EmailController::class, 'mail'])->name('email.mail');

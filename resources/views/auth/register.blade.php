@@ -59,7 +59,7 @@
                             </div>
                         <br>
                         <button type="submit" class="btn btn-primary">Cadastro</button>
-
+                        <a  class="btn btn-primary" href="{{route('cadastro.show')}}">Voltar</a>
                     </div>
                 </form>
             </div>    
