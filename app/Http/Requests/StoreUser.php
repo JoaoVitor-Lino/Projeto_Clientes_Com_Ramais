@@ -42,6 +42,7 @@ class StoreUser extends FormRequest
         'name.required' => 'O campo nome é obrigatório',
         'email.required' => 'O campo email é obrigatório',
         'password.required' => 'O campo senha é obrigatório',
+        'password.confirmed' => 'As senhas encontram-se diferentes',
         ];
     }
 }

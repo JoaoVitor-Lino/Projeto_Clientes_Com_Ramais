@@ -79,5 +79,44 @@ class ClientesController extends Controller
         }
         fclose($file);
         exit;
+
+
+    }
+
+    public function vinculo() 
+    {
+        $clientes = Clientes::with('ramais', 'dids')->get();
+
+        return view('admin.clientes.vinculos', compact('clientes'));
+    }
+
+    public function vinculoCsv()
+    {  
+        $clientes = Clientes::with('ramais', 'dids')->get();
+        $file = fopen('php://output', 'r');
+        header('Content-type: application/csv');
+        header('Content-Type: text/html; charset=utf-8');
+        header('Content-Disposition: attachment; filename=relatiorio_total.csv');
+        foreach($clientes as $cliente)
+        {
+            fputcsv($file, array($cliente->nome),";");
+
+            fputcsv($file, array("Ramais"));
+            fputcsv($file, array('', 'Id', 'Ramal', 'Nome', 'Tipo', 'Bina'),";");
+
+            foreach($cliente['ramais'] as $ramais)
+            {
+                fputcsv($file, array('',$ramais->id, $ramais->ramal, $ramais->nomes, $ramais->tipo, $ramais->bina),";");
+            }
+
+            fputcsv($file, array("Dids"));
+            fputcsv($file, array('', 'Id', 'Número', 'Descrição'),";");
+            foreach($cliente['dids'] as $dids)
+            {
+                fputcsv($file, array('',$dids->id, $dids->numero, $dids->descricao),";");
+            }
+
+            fputcsv($file, array(""));
+        }
     }
 }

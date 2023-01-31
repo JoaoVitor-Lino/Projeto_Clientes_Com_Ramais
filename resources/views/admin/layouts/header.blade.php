@@ -51,6 +51,11 @@
                                 Registrar Novo Usuário
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('vinculo')}}">
+                                Clientes Com Vinculo
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>

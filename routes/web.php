@@ -40,6 +40,11 @@ Route::middleware('auth')->prefix('clientes')->group(function () {
     Route::get('/visualizar', [ClientesController::class, 'visualizar'])->name('clientes.visualizar');
     Route::get('/', [ClientesController::class, 'index'])->name('clientes.index');
     Route::get('/relatorio', [ClientesController::class, 'clienteCsv'])->name('clientes.csv');
+
+    //Rota de Clientes com vinculo
+    Route::get('/vinculo',[ClientesController::class, 'vinculo'])->name('vinculo');
+    Route::get('/relatorios', [ClientesController::class, 'vinculoCsv'])->name('clientes.vinculoCsv');
+
 });
 
 //ROTAS DO DID
@@ -62,8 +67,11 @@ Route::prefix('ramais')->group(function(){
     Route::get('/', [RamaisController::class, 'tabela'])->name('ramais.tabela');
     Route::get('/relatorio', [RamaisController::class, 'ramaisCsv'])->name('ramais.csv');
 });
-
+//Rota De EMAIL
 Route::get('/email', [EmailController::class, 'mail'])->name('email.mail');
+
+
+
 
 Route::get('/', function () {
     return view('welcome');
