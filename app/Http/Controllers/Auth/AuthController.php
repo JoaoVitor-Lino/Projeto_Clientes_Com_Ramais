@@ -15,24 +15,33 @@ class AuthController extends Controller
     
     public function formLogin()
     {
-        return view('auth.login');
+        if(Auth::check())
+        {
+            return redirect()->route('cadastro.show');
+        }
+            return view('auth.login');
     }
     
     public function login(Request $request)
     {
-        $credentials = $request->only('email', 'password');
-
+        $credentials = $request->validated();
+        
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
             
             return redirect()->intended('cadastro.show');
         }
-        
-        // if($credentials) {
-            //     return redirect()->route('cadastro.show');
-            // }
+
             return redirect()->route('login')
             ->with('messages', 'Login incorreto');
+        }
+
+        public function logout(Request $request)
+        {
+            Auth::logout();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+            return redirect()->route('login');
         }
     }
     

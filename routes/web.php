@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Route;
 
 //                      Rotas de teste para Autenticação        
 //---------------------------------------------------------------------------------------------
+Route::redirect('/', 'login');
 Route::get('/cadastro', [AuthController::class, 'formRegister'])->name('cadastro.register');
 Route::get('/login', [AuthController::class, 'formLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'Login'])->name('post.login');
@@ -28,6 +29,8 @@ Route::post('/cadastro/store',[UserController::class, 'store'])->name('cadastro.
 Route::get('/usuarios', [UserController::class, 'show'])->name('cadastro.show');
 Route::get('/relatorio', [UserController::class, 'userCsv'])->name('user.csv');
 
+//Rotas de logout
+Route::post('/logout',[AuthController::class, 'logout'])->middleware('auth')->name('logout');
 
 //---------------------------------------------------------------------------------------------
 //ROTAS DO CLIENTE

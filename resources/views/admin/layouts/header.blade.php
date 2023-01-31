@@ -16,9 +16,14 @@
         <div class="container-fluid">
             <a class="navbar-brand" href="{{route('clientes.index')}}">
                 <img src="https://sitezindocarlos.vercel.app/image/logo-azul-com-texto.png" alt="Logo" width="220.767px"
-                height="85.8px">
-                
+                height="85.8px">   
             </a>
+        </div>
+        <div>
+            <form action="{{route('logout')}}" method="POST">
+                @csrf
+                <button class="btn btn-link" type="submit">Logout</button>
+            </form>
         </div>
     </nav>
     <section class="card-wrapper">
