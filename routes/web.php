@@ -34,7 +34,7 @@ Route::post('/logout',[AuthController::class, 'logout'])->middleware('auth')->na
 
 //---------------------------------------------------------------------------------------------
 //ROTAS DO CLIENTE
-Route::middleware('auth')->prefix('clientes')->group(function () {
+Route::middleware('auth')->withTrashed()->prefix('clientes')->group(function () {
     Route::put('/{id}', [ClientesController::class, 'update'])->name('clientes.update');
     Route::get('/edit/{id}', [ClientesController::class, 'edit'])->name('clientes.edit');
     Route::delete('/{id}', [ClientesController::class, 'destroy'])->name('clientes.destroy');
@@ -51,7 +51,7 @@ Route::middleware('auth')->prefix('clientes')->group(function () {
 });
 
 //ROTAS DO DID
-Route::prefix('dids')->group(function(){
+Route::prefix('dids')->withTrashed()->group(function(){
     Route::put('/{id}', [DidsController::class, 'update'])->name('dids.update');
     Route::get('/edit/{id}', [DidsController::class, 'edit'])->name('dids.edit');
     Route::delete('/{id}', [DidsController::class, 'destroy'])->name('dids.destroy');
@@ -61,7 +61,7 @@ Route::prefix('dids')->group(function(){
     Route::get('/relatorio', [DidsController::class, 'didCsv'])->name('dids.csv');
 });
 //ROTAS DO RAMAL
-Route::prefix('ramais')->group(function(){
+Route::prefix('ramais')->withTrashed()->group(function(){
     Route::put('/{id}', [RamaisController::class, 'update'])->name('ramais.update');
     Route::get('/edit/{id}', [RamaisController::class, 'edit'])->name('ramais.edit');
     Route::delete('/{id}', [RamaisController::class, 'destroy'])->name('ramais.destroy');
