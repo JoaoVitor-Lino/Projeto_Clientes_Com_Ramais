@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Auth\LoginStore;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -22,7 +23,7 @@ class AuthController extends Controller
             return view('auth.login');
     }
     
-    public function login(Request $request)
+    public function login(LoginStore $request)
     {
         $credentials = $request->validated();
         

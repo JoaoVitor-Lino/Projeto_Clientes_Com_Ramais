@@ -10,10 +10,11 @@ use Illuminate\Support\Facades\Mail;
 class EmailController extends Controller
 {
     public function mail(){
-        $id = 1;
-        $user = User::where('id', $id)->first();
-        
+        $users = User::get();
+        foreach($users as $user) { 
+
         Mail::to($user->email)->send(new SendMailUser($user));
         return redirect()->route('clientes.index');
+        }
     }
 }
